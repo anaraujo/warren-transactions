@@ -14,21 +14,21 @@
     >
       <div>{{ item.title | capitalize }}</div>
       <div>{{ item.description | capitalize }}</div>
-      <div>{{ item.status | capitalize }}</div>
-      <div>R$ {{ item.amount }}</div>
+      <div>{{ item.status | translatedStatus }}</div>
+      <div>{{ item.amount | money }}</div>
     </div>
   </div>
 </template>
 
 <script>
-import { capitalize } from "@utils/filters";
+import { capitalize, money, translatedStatus } from "@utils/filters";
 
 export default {
   name: "Table",
   props: {
     items: Array,
   },
-  filters: { capitalize },
+  filters: { capitalize, money, translatedStatus },
   methods: {
     selectItem(id) {
       this.$emit("selectItem", id);

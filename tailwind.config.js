@@ -152,10 +152,10 @@ const theme = {
     },
 
     fontSize: {
-        '2xs': '10px',
-        'xs': '12px',
-        'sm': '14px',
-        'base': '16px',
+        '2xs': '12px',
+        'xs': '14px',
+        'sm': '16px',
+        'base': '20px',
         'lg': '24px',
         'xl': '32px',
     },

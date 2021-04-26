@@ -2,14 +2,68 @@
     .w-modal {
         @apply fixed top-0 left-0 h-screen w-full;
 
-        & .m-backdrop {
-            @apply flex items-center justify-center h-full w-full p-4;
-            background: rgba(46, 45, 51, 0.15);
+        & .m-wrapper {
+            @apply relative flex items-center justify-center h-full w-full p-4;
+
+            & .m-backdrop {
+                @apply absolute top-0 left-0 h-full w-full cursor-pointer;
+                background: rgba(46, 45, 51, 0.15);
+            }
 
             & .m-content {
-                @apply h-full w-full bg-white;
-                max-height: 500px;
+                @apply max-h-full w-full bg-white p-5 z-0 overflow-auto;
                 max-width: 800px;
+
+                & .m-header {
+                    @apply flex items-center justify-between;
+
+                    & h2 {
+                        @apply text-lg;
+                    }
+
+                    & .icon {
+                        @apply h-2 w-2 cursor-pointer;
+                    }
+                }
+
+                & .m-body {
+                    & .status-wrapper {
+                        & .status-bar {
+                            @apply h-3 rounded-2 bg-lighter-gray my-2;
+
+                            & .bar {
+                                @apply relative h-full rounded-l-2 bg-pink;
+
+                                &:after {
+                                    @apply absolute h-3 w-3 rounded-full bg-light-gray;
+                                    content: "";
+                                    right: -12px;
+                                }
+                            }
+                        }
+
+                        & .status-label {
+                            @apply flex justify-between;
+                        }
+                    }
+
+                    & .info-wrapper {
+                        @apply mt-4;
+
+                        & h3 {
+                            @apply text-lg font-bold;
+                            letter-spacing: -1px;
+                        }
+
+                        & p {
+                            @apply font-serif text-base; 
+                        }
+
+                        & .info {
+                            @apply flex justify-between border-t-px border-light-gray py-1;
+                        }
+                    }
+                }
             }
         }
     }

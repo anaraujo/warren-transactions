@@ -2,8 +2,8 @@
   <details class="w-dropdown">
     <summary v-if="selectedItem">
       <span class="selected-item">
-        {{ selectedItem | capitalize }}
-        <div class="icon-wrapper" @click="deselectItem">
+        {{ selectedItem | translatedStatus }}
+        <div class="icon-wrapper" @click="selectItem(null)">
           <i class="icon close-icon"></i>
         </div>
       </span>
@@ -20,14 +20,14 @@
         :key="index"
         @click="selectItem(item)"
       >
-        {{ item | capitalize }}
+        {{ item | translatedStatus }}
       </div>
     </div>
   </details>
 </template>
 
 <script>
-import { capitalize } from "@utils/filters";
+import { translatedStatus } from "@utils/filters";
 
 export default {
   name: "Table",
@@ -39,7 +39,7 @@ export default {
       selectedItem: null,
     };
   },
-  filters: { capitalize },
+  filters: { translatedStatus },
   methods: {
     selectItem(value) {
       const details = document.querySelector(".w-dropdown");
@@ -47,10 +47,6 @@ export default {
       this.selectedItem = value;
       details.removeAttribute("open");
       this.$emit("selectItem", value);
-    },
-    deselectItem() {
-      this.selectedItem = null;
-      this.$emit("selectItem", null);
     },
   },
 };

@@ -25,17 +25,16 @@
       </section>
 
       <section v-else>
-        <div v-if="loading">Carregando...</div>
-
-        <Table
-          v-else
-          :items="filteredItems"
-          @selectItem="selectTransaction"
-        ></Table>
+        <Table :items="filteredItems" @selectItem="selectTransaction"></Table>
       </section>
     </main>
 
-    <Modal v-if="openModal" :transaction="selectedTransaction"></Modal>
+    <Modal
+      v-if="openModal"
+      :transaction="selectedTransaction"
+      :statuses="statuses"
+      @closeModal="closeModal"
+    ></Modal>
   </div>
 </template>
 
@@ -52,9 +51,8 @@ export default {
       transactions: null,
       title: "",
       status: null,
-      statuses: [],
+      statuses: ["created", "processing", "processed"],
       ready: false,
-      loading: true,
       errored: false,
       openModal: false,
       selectedTransaction: null,
@@ -83,12 +81,6 @@ export default {
         this.errored = true;
       })
       .finally(() => {
-        this.loading = false;
-        this.transactions.forEach((item) => {
-          if (!this.statuses.includes(item.status)) {
-            this.statuses.push(item.status);
-          }
-        });
         this.ready = true;
       });
   },
@@ -108,6 +100,9 @@ export default {
         .finally(() => {
           this.openModal = true;
         });
+    },
+    closeModal() {
+      this.openModal = false;
     },
   },
 };
