@@ -1,0 +1,18 @@
+@layer components {
+    input[type=text] {
+        @apply h-4 rounded-full border-px border-gray text-dark-gray text-sm bg-no-repeat;
+        background-image: url('../../../../public/images/search.svg');
+        background-position: 8px;
+        padding: 8px 8px 9px 32px;
+        
+        &:active,
+        &:focus,
+        &:hover {
+            @apply border-pink;
+        }
+
+        &::placeholder {
+            @apply text-dark-gray text-sm;
+        }
+    }
+}
