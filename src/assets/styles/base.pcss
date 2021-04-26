@@ -4,7 +4,6 @@
         /* background: rgb(224,43,87);
         background: linear-gradient(180deg, rgba(224,43,87,1) 30%, rgba(148,29,58,1) 100%); */
 
-
 		& input:focus,
 		& input:active,
 		& textarea:focus,
@@ -23,16 +22,23 @@
 		& details {
 			@apply cursor-pointer;
 
-			&[open] summary .icon {
+			&[open] summary .arrow-down-icon {
 				@apply transform -rotate-180;
 			}
 
 			& > summary {
-				@apply list-none outline-none;
+				@apply flex items-center justify-between h-full list-none outline-none;
 
-				&::marker {
+				&::marker,
+                &::-webkit-details-marker {
 					@apply hidden;
 				}
+
+                & .arrow-down-icon {
+                    height: 6px;
+                    width: 10px;
+                    transition: all 0.1s;
+                }
 			}
 		}
 
@@ -51,6 +57,10 @@
 
         & header .logo-icon {
             @apply h-4 w-11 bg-pink;
+        }
+
+        & main .filters-wrapper {
+            @apply flex mb-4;
         }
 	}
 }

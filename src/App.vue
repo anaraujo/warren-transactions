@@ -1,8 +1,9 @@
 <template>
-  <div id="app">
+  <div id="app" v-if="ready">
     <header class="container-fluid">
       <i class="icon logo-icon"></i>
     </header>
+
     <main class="container-fluid">
       <div class="filters-wrapper">
         <input
@@ -12,6 +13,8 @@
           v-model="title"
           placeholder="Pesquise pelo título"
         />
+
+        <Dropdown :items="statuses" @selectItem="selectStatus"></Dropdown>
       </div>
 
       <section v-if="errored">
@@ -24,38 +27,37 @@
       <section v-else>
         <div v-if="loading">Carregando...</div>
 
-        <div v-else class="warren-table">
-          <div class="warren-header">
-            <div>Título</div>
-            <div>Descrição</div>
-            <div>Status</div>
-            <div>Valor</div>
-          </div>
-          <div
-            class="warren-row"
-            v-for="(tsc, index) in filteredItems"
-            :key="index"
-          >
-            <div>{{ tsc.title | capitalize }}</div>
-            <div>{{ tsc.description | capitalize }}</div>
-            <div>{{ tsc.status | capitalize }}</div>
-            <div>R$ {{ tsc.amount }}</div>
-          </div>
-        </div>
+        <Table
+          v-else
+          :items="filteredItems"
+          @selectItem="selectTransaction"
+        ></Table>
       </section>
     </main>
+
+    <Modal v-if="openModal" :transaction="selectedTransaction"></Modal>
   </div>
 </template>
 
 <script>
+import Dropdown from "@components/Dropdown";
+import Modal from "@components/Modal";
+import Table from "@components/Table";
+
 export default {
   name: "App",
+  components: { Dropdown, Modal, Table },
   data() {
     return {
       transactions: null,
       title: "",
+      status: null,
+      statuses: [],
+      ready: false,
       loading: true,
       errored: false,
+      openModal: false,
+      selectedTransaction: null,
     };
   },
   computed: {
@@ -65,6 +67,8 @@ export default {
           (item) =>
             item.title.toLowerCase().indexOf(this.title.toLowerCase()) > -1
         );
+      } else if (this.status !== null) {
+        return this.transactions.filter((item) => item.status === this.status);
       } else {
         return this.transactions;
       }
@@ -78,17 +82,33 @@ export default {
         console.log(error);
         this.errored = true;
       })
-      .finally(() => (this.loading = false));
+      .finally(() => {
+        this.loading = false;
+        this.transactions.forEach((item) => {
+          if (!this.statuses.includes(item.status)) {
+            this.statuses.push(item.status);
+          }
+        });
+        this.ready = true;
+      });
   },
-  filters: {
-    capitalize(value) {
-      return value.charAt(0).toUpperCase() + value.slice(1);
+  methods: {
+    selectStatus(status) {
+      this.status = status;
+    },
+    selectTransaction(id) {
+      this.axios
+        .get(
+          `https://warren-transactions-api.herokuapp.com/api/transactions/${id}`
+        )
+        .then((response) => (this.selectedTransaction = response.data))
+        .catch((error) => {
+          console.log(error);
+        })
+        .finally(() => {
+          this.openModal = true;
+        });
     },
   },
-  // methods: {
-  //   filterTitle() {
-  //     console.log(this.title);
-  //   },
-  // },
 };
 </script>

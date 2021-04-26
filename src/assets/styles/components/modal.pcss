@@ -1,0 +1,16 @@
+@layer components {
+    .w-modal {
+        @apply fixed top-0 left-0 h-screen w-full;
+
+        & .m-backdrop {
+            @apply flex items-center justify-center h-full w-full p-4;
+            background: rgba(46, 45, 51, 0.15);
+
+            & .m-content {
+                @apply h-full w-full bg-white;
+                max-height: 500px;
+                max-width: 800px;
+            }
+        }
+    }
+}

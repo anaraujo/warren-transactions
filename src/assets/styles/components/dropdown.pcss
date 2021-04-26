@@ -1,0 +1,36 @@
+@layer components {
+    .w-dropdown {
+        @apply relative h-4 min-w-15 ml-4 rounded-4px border-px border-gray px-1 bg-white;
+
+        &[open] {
+            @apply rounded-b-none;
+        }
+
+        & .selected-item {
+            @apply flex items-center mr-1 rounded-4px px-4px bg-lighter-gray;
+
+            & .icon-wrapper {
+                @apply flex items-center justify-center h-2 w-2 ml-1 bg-dark-gray rounded-full;
+
+                & .icon {
+                    @apply bg-lighter-gray;
+                    height: 10px;
+                    width: 10px;
+                }
+            }
+        }
+
+        & .d-options {
+            @apply absolute top-4 left-0 -mt-px -ml-px rounded-b-4px border-px border-t-0 border-gray bg-white;
+            width: calc(100% + 2px);
+
+            & .option {
+                @apply py-4px px-1;
+
+                &:hover {
+                    @apply bg-lighter-gray;
+                }
+            }
+        }
+    }
+}
