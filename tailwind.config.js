@@ -161,7 +161,7 @@ const theme = {
 
     fontFamily: {
         sans: [
-            'Asap',
+            'Montserrat',
             'system-ui',
             'BlinkMacSystemFont',
             '-apple-system',
@@ -176,6 +176,7 @@ const theme = {
             'sans-serif',
         ],
         serif: [
+            'Source Sans Pro',
             'Constantia',
             'Lucida Bright',
             'Lucidabright',
