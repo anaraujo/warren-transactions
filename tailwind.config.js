@@ -246,6 +246,7 @@ const theme = {
     borderRadius: global.Object.assign({
         none: '0',
         '2px': '2px',
+        '4px': '4px',
         'full': '9999px',
     }, spacing),
 
@@ -291,7 +292,9 @@ const theme = {
 
     gap: global.Object.assign({}, spacing),
 
-    padding: global.Object.assign({}, spacing),
+    padding: global.Object.assign({
+        '4px': '4px',
+    }, spacing),
 
     margin: global.Object.assign({
         'auto': 'auto',
