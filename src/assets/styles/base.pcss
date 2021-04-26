@@ -1,0 +1,53 @@
+@layer base {
+	body {
+		@apply relative bg-lighter-gray font-sans text-dark-gray;
+
+		& input:focus,
+		& input:active,
+		& textarea:focus,
+		& textarea:active,
+		& button:focus,
+		& button:active {
+			@apply outline-none;
+		}
+
+		& input,
+		& textarea,
+		& button {
+			transition: border 0.2s;
+		}
+
+		& details {
+			@apply cursor-pointer;
+
+			&[open] summary .icon {
+				@apply transform -rotate-180;
+			}
+
+			& > summary {
+				@apply list-none outline-none;
+
+				&::marker {
+					@apply hidden;
+				}
+			}
+		}
+
+		& .offset {
+			@apply col-span-1;
+
+			@screen md-down {
+				@apply hidden;
+			}
+		}
+
+		& .container-fluid {
+			@apply relative w-full mx-auto py-2;
+            max-width: 1300px;
+		}
+
+        & header .logo-icon {
+            @apply h-4 w-11 bg-pink;
+        }
+	}
+}

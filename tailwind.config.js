@@ -1,6 +1,14 @@
 const colors = {
     'transparent': 'transparent',
     'white': '#FFFFFF',
+    'yellow': '#FF9A0D',
+    'green': '#1BBC58',
+    'blue': '#0D81FF',
+    'pink': '#E02B57',
+    'lighter-gray': '#F5F6FA',
+    'light-gray': '#B0B1BD',
+    'gray': '#757680',    
+    'dark-gray': '#2E2D33',
     'black': '#000000',
 };
 
