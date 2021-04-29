@@ -13,8 +13,6 @@ describe("Dropdown.test.js", () => {
                 items
             }
         })
-
-        cmp.vm.selectedItem = null;
     });
 
     it('prop named \'items\' is set to proper value', () => {
@@ -26,7 +24,14 @@ describe("Dropdown.test.js", () => {
     });
 
     it('when item on dropdown is selected, \'selectedItem\' is set to that item\'s value', () => { 
-        cmp.vm.selectItem('created');
-        expect(cmp.vm.selectedItem).toBe('created');
+        cmp.vm.selectItem('processed');
+        expect(cmp.vm.selectedItem).toBe('processed');
+    })
+
+    it('when item on dropdown is selected, the item\'s value is emmited', () => {
+        cmp.vm.selectItem('processed');
+        expect(cmp.emitted().selectItem).toBeTruthy()
+        expect(cmp.emitted().selectItem.length).toBe(1)
+        expect(cmp.emitted().selectItem[0]).toEqual(['processed'])
     })
 });

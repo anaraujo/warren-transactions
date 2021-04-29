@@ -13,12 +13,6 @@ describe("Modal.test.js", () => {
         "to": "Conta Warren" 
     };
 
-    const statusPercentage = {
-        created: 0,
-        processing: 50,
-        processed: 100,
-    };
-
     const statuses = ["created", "processing", "processed"];
     let localVue, cmp;
 
@@ -31,8 +25,6 @@ describe("Modal.test.js", () => {
                 statuses
             }
         })
-
-        cmp.vm.statusPercentage = statusPercentage;
     });
 
     it('prop named \'transaction\' is set to proper value', () => {
@@ -59,4 +51,10 @@ describe("Modal.test.js", () => {
             processed: 100,
         });
     });
+
+    it('close() is emmited', () => {
+        cmp.vm.close();
+        expect(cmp.emitted().closeModal).toBeTruthy()
+        expect(cmp.emitted().closeModal.length).toBe(1)
+    })
 });

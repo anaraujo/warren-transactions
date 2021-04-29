@@ -61,6 +61,14 @@ export default {
   computed: {
     filteredItems() {
       if (this.title !== "") {
+        if (this.status !== null) {
+          return this.transactions.filter(
+            (item) =>
+              item.status === this.status &&
+              item.title.toLowerCase().indexOf(this.title.toLowerCase()) > -1
+          );
+        }
+
         return this.transactions.filter(
           (item) =>
             item.title.toLowerCase().indexOf(this.title.toLowerCase()) > -1
