@@ -45,7 +45,9 @@ export default {
       const details = document.querySelector(".w-dropdown");
 
       this.selectedItem = value;
-      details.removeAttribute("open");
+      if (details) {
+        details.removeAttribute("open");
+      }
       this.$emit("selectItem", value);
     },
   },

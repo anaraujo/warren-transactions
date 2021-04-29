@@ -1,19 +1,32 @@
-import Vue from "vue";
+import { createLocalVue, shallow } from 'vue-test-utils'
 import Dropdown from "@components/Dropdown";
 
 describe("Dropdown.test.js", () => {
-    let cmp, vm;
+    const items = ["created", "processing", "processed"];
+    let localVue, cmp;
 
     beforeEach(() => {
-        cmp = Vue.extend(Dropdown); // Create a copy of the original component
-        vm = new cmp({
-            data: {
-                selectedItem: 'initialized'
+        localVue = createLocalVue()
+        cmp = shallow(Dropdown, {
+            localVue,
+            propsData: {
+                items
             }
-        }).$mount(); // Instances and mounts the component
+        })
+
+        cmp.vm.selectedItem = null;
     });
 
-    it('equals selectedItem to "initialized"', () => {
-        expect(vm.selectedItem).toEqual("initialized");
+    it('prop named \'items\' is set to proper value', () => {
+        expect(cmp.vm.items).toEqual(["created", "processing", "processed"]);
     });
+
+    it('selectedItem initializes equal to null', () => {
+        expect(cmp.vm.selectedItem).toEqual(null);
+    });
+
+    it('when item on dropdown is selected, \'selectedItem\' is set to that item\'s value', () => { 
+        cmp.vm.selectItem('created');
+        expect(cmp.vm.selectedItem).toBe('created');
+    })
 });
