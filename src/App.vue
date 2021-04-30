@@ -25,7 +25,11 @@
       </section>
 
       <section v-else>
-        <Table :items="filteredItems" @selectItem="selectTransaction"></Table>
+        <div v-for="(transaction, date) in groupedByDate" :key="date">
+          <h3>{{ date | longDate }}</h3>
+
+          <Table :items="transaction" @selectItem="selectTransaction"></Table>
+        </div>
       </section>
     </main>
 
@@ -39,6 +43,7 @@
 </template>
 
 <script>
+import { longDate } from "@utils/filters";
 import Dropdown from "@components/Dropdown";
 import Modal from "@components/Modal";
 import Table from "@components/Table";
@@ -46,6 +51,7 @@ import Table from "@components/Table";
 export default {
   name: "App",
   components: { Dropdown, Modal, Table },
+  filters: { longDate },
   data() {
     return {
       transactions: null,
@@ -78,6 +84,26 @@ export default {
       } else {
         return this.transactions;
       }
+    },
+    groupedByDate() {
+      var keyDate = Object.keys(this.filteredItems).map((index) => {
+        return {
+          date: this.filteredItems[index].date,
+          transaction: this.filteredItems[index],
+        };
+      });
+
+      var groupDate = {};
+
+      keyDate.forEach((item) => {
+        if (item.date in groupDate) {
+          groupDate[item.date].push(item.transaction);
+        } else {
+          groupDate[item.date] = new Array(item.transaction);
+        }
+      });
+
+      return groupDate;
     },
   },
   mounted() {

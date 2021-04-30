@@ -105,21 +105,21 @@ describe("App.test.js", () => {
         expect(cmp.vm.status).toEqual('created');
     });
 
-    it('\'selectTransaction \' is working properly', done => {
-        const mockAdapter = new MockAdapter(axios);
-        const data = transaction;
-        const id = '5f89f9f257fe42957bf6dbfd';
+    // it('\'selectTransaction \' is working properly', done => {
+    //     const mockAdapter = new MockAdapter(axios);
+    //     const data = transaction;
+    //     const id = '5f89f9f257fe42957bf6dbfd';
         
-        mockAdapter.onGet(`https://warren-transactions-api.herokuapp.com/api/transactions/${id}`).reply(200, data);
+    //     mockAdapter.onGet(`https://warren-transactions-api.herokuapp.com/api/transactions/${id}`).reply(200, data);
         
-        cmp.vm.selectTransaction('5f89f9f257fe42957bf6dbfd').then(response => {
-                expect(cmp.vm.selectedTransaction).toBe(response.data);
-            })
-            .finally(() => {
-                expect(cmp.vm.openModal).toEqual(true);
-                done();
-            });
-    });
+    //     cmp.vm.selectTransaction('5f89f9f257fe42957bf6dbfd').then(response => {
+    //             expect(cmp.vm.selectedTransaction).toBe(response.data);
+    //         })
+    //         .finally(() => {
+    //             expect(cmp.vm.openModal).toEqual(true);
+    //             done();
+    //         });
+    // });
 
     it('\'closeModal \' set \'openModal\' to false', () => {
         cmp.vm.closeModal();

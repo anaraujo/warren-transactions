@@ -5,6 +5,7 @@
       <div>Descrição</div>
       <div>Status</div>
       <div>Valor</div>
+      <div>Data</div>
     </div>
     <div
       class="t-row"
@@ -16,19 +17,20 @@
       <div>{{ item.description | capitalize }}</div>
       <div>{{ item.status | translatedStatus }}</div>
       <div>{{ item.amount | money }}</div>
+      <div>{{ item.date | date }}</div>
     </div>
   </div>
 </template>
 
 <script>
-import { capitalize, money, translatedStatus } from "@utils/filters";
+import { capitalize, date, money, translatedStatus } from "@utils/filters";
 
 export default {
   name: "Table",
   props: {
     items: Array,
   },
-  filters: { capitalize, money, translatedStatus },
+  filters: { capitalize, date, money, translatedStatus },
   methods: {
     selectItem(id) {
       this.$emit("selectItem", id);
