@@ -1,39 +1,50 @@
 <template>
   <div class="w-table">
-    <div class="t-header">
-      <div>Título</div>
-      <div>Descrição</div>
-      <div>Status</div>
-      <div>Valor</div>
-      <div>Data</div>
-    </div>
     <div
       class="t-row"
       v-for="item in items"
       :key="item.id"
       @click="selectItem(item.id)"
     >
-      <div>{{ item.title | capitalize }}</div>
-      <div>{{ item.description | capitalize }}</div>
-      <div>{{ item.status | translatedStatus }}</div>
-      <div>{{ item.amount | money }}</div>
-      <div>{{ item.date | date }}</div>
+      <p class="t-col title">{{ item.title | capitalize }}</p>
+      <p class="t-col desc">{{ item.description }}</p>
+      <p class="t-col status">
+        <span
+          :style="{
+            color: textColor(item.status),
+            backgroundColor: bgColor(item.status),
+          }"
+        >
+          {{ item.status | translatedStatus }}
+        </span>
+      </p>
+      <p class="t-col amount">{{ item.amount | money }}</p>
+      <p class="t-col button"><i class="icon arrow-down-icon"></i></p>
     </div>
   </div>
 </template>
 
 <script>
-import { capitalize, date, money, translatedStatus } from "@utils/filters";
+import { capitalize, money, translatedStatus } from "@utils/filters";
 
 export default {
   name: "Table",
   props: {
     items: Array,
+    statuses: Array,
   },
-  filters: { capitalize, date, money, translatedStatus },
+  filters: { capitalize, money, translatedStatus },
   methods: {
     selectItem(id) {
       this.$emit("selectItem", id);
+    },
+    textColor(value) {
+      let currentStatus = this.statuses.find((status) => status.name === value);
+      return currentStatus.textColor;
+    },
+    bgColor(value) {
+      let currentStatus = this.statuses.find((status) => status.name === value);
+      return currentStatus.backgroundColor;
     },
   },
 };

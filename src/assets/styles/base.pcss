@@ -1,23 +1,8 @@
 @layer base {
 	body {
-		@apply relative bg-lighter-gray font-sans text-dark-gray;
+		@apply relative font-sans text-dark-gray;
         /* background: rgb(224,43,87);
         background: linear-gradient(180deg, rgba(224,43,87,1) 30%, rgba(148,29,58,1) 100%); */
-
-		& input:focus,
-		& input:active,
-		& textarea:focus,
-		& textarea:active,
-		& button:focus,
-		& button:active {
-			@apply outline-none;
-		}
-
-		& input,
-		& textarea,
-		& button {
-			transition: border 0.2s;
-		}
 
 		& details {
 			@apply cursor-pointer;
@@ -35,7 +20,7 @@
 				}
 
                 & .arrow-down-icon {
-                    height: 6px;
+                    height: 10px;
                     width: 10px;
                     transition: all 0.1s;
                 }
@@ -44,8 +29,12 @@
 
 
 		& h3 {
-			@apply text-lg font-bold border-b-px border-light-gray;
+			@apply text-lg font-bold border-b-px border-lighter-gray;
 			letter-spacing: -1px;
+		}
+
+		& h6 {
+			@apply text-xs text-gray font-bold font-serif border-b-px border-lighter-gray pb-2;
 		}
 
 		& .offset {
@@ -65,8 +54,14 @@
             @apply h-4 w-11 bg-pink;
         }
 
-        & main .filters-wrapper {
-            @apply flex mb-4;
-        }
+        & main {
+			& .filters-wrapper {
+				@apply flex;
+			}
+
+			& .date-wrapper {
+				@apply mt-4;
+			}
+		}
 	}
 }

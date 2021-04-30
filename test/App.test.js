@@ -54,7 +54,23 @@ describe("App.test.js", () => {
     });
 
     it('\'statuses\' initializes with proper value', () => {
-        expect(cmp.vm.statuses).toEqual(["created", "processing", "processed"]);
+        expect(cmp.vm.statuses).toEqual([
+            {
+                name: "created",
+                textColor: "#101c8b",
+                backgroundColor: "#b3baf4",
+            },
+            {
+                name: "processing",
+                textColor: "#7a2f01",
+                backgroundColor: "#fbb791",
+            },
+            {
+                name: "processed",
+                textColor: "#004d3a",
+                backgroundColor: "#a0f4e0",
+            },
+        ]);
     });
 
     it('\'ready\' initializes equal to false', () => {
@@ -74,6 +90,11 @@ describe("App.test.js", () => {
     });
 
     // COMPUTED 
+
+    it('\'statusesNames \' is working properly', () => {
+        // no filters specified
+        expect(cmp.vm.statusesNames).toEqual(["created", "processing", "processed"],);
+    });
 
     it('\'filteredItems \' is working properly', () => {
         // no filters specified

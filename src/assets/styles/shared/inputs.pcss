@@ -1,18 +1,33 @@
 @layer components {
+    input:focus,
+    input:active,
+    textarea:focus,
+    textarea:active,
+    button:focus,
+    button:active {
+        @apply outline-none;
+    }
+
+    input,
+    textarea,
+    button {
+        transition: border 0.2s;
+    }
+    
     input[type=text] {
-        @apply h-4 rounded-full border-px border-gray text-dark-gray text-sm bg-no-repeat;
+        @apply h-4 rounded-4px border-px border-light-gray text-gray text-xs bg-no-repeat;
         background-image: url('../../../../public/images/search.svg');
         background-position: 8px;
-        padding: 8px 8px 9px 32px;
+        padding: 8px 16px 9px 32px;
         
         &:active,
         &:focus,
         &:hover {
-            @apply border-pink;
+            @apply border-gray;
         }
 
         &::placeholder {
-            @apply text-dark-gray text-sm;
+            @apply text-dark-gray text-xs;
         }
     }
 }

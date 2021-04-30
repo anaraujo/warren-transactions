@@ -25,10 +25,18 @@
       </section>
 
       <section v-else>
-        <div v-for="(transaction, date) in groupedByDate" :key="date">
-          <h3>{{ date | longDate }}</h3>
+        <div
+          v-for="(transaction, date) in groupedByDate"
+          :key="date"
+          class="date-wrapper"
+        >
+          <h6>{{ date | longDate }}</h6>
 
-          <Table :items="transaction" @selectItem="selectTransaction"></Table>
+          <Table
+            :items="transaction"
+            :statuses="statuses"
+            @selectItem="selectTransaction"
+          ></Table>
         </div>
       </section>
     </main>
@@ -43,7 +51,7 @@
 </template>
 
 <script>
-import { longDate } from "@utils/filters";
+import { date, longDate } from "@utils/filters";
 import Dropdown from "@components/Dropdown";
 import Modal from "@components/Modal";
 import Table from "@components/Table";
@@ -51,13 +59,29 @@ import Table from "@components/Table";
 export default {
   name: "App",
   components: { Dropdown, Modal, Table },
-  filters: { longDate },
+  filters: { date, longDate },
   data() {
     return {
       transactions: null,
       title: "",
       status: null,
-      statuses: ["created", "processing", "processed"],
+      statuses: [
+        {
+          name: "created",
+          textColor: "#101c8b",
+          backgroundColor: "#b3baf4",
+        },
+        {
+          name: "processing",
+          textColor: "#7a2f01",
+          backgroundColor: "#fbb791",
+        },
+        {
+          name: "processed",
+          textColor: "#004d3a",
+          backgroundColor: "#a0f4e0",
+        },
+      ],
       ready: false,
       errored: false,
       openModal: false,

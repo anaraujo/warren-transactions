@@ -18,9 +18,9 @@
         class="option"
         v-for="(item, index) in items"
         :key="index"
-        @click="selectItem(item)"
+        @click="selectItem(item.name)"
       >
-        {{ item | translatedStatus }}
+        {{ item.name | translatedStatus }}
       </div>
     </div>
   </details>

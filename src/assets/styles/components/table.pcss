@@ -1,23 +1,44 @@
 @layer components {
     .w-table {
-        @apply my-2 rounded-4px overflow-hidden;
-        box-shadow: 0px 10px 20px rgba(46, 45, 51, 0.15);
-
-        & .t-header,
-        & .t-row {
-            @apply grid px-1 py-4px;
-            grid-template-columns: 2fr 4fr 2fr 2fr 1fr;
-        }
-
-        & .t-header {
-            @apply bg-light-gray text-white;
-        }
+        /* box-shadow: 0px 10px 20px rgba(46, 45, 51, 0.15); */
 
         & .t-row {
-            @apply bg-lighter-gray cursor-pointer;
+            @apply grid -mx-1 rounded-1 px-1 py-2 cursor-pointer font-serif text-base text-dark-gray;
+            grid-template-columns: 1fr 2fr 1fr 1fr 48px;
 
-            &:nth-of-type(2n) {
-                @apply bg-white;
+            &:hover {
+                @apply bg-lighter-gray;
+            }
+
+            & .t-col {
+                @apply flex items-center;
+
+                &.desc {
+                    @apply text-gray;
+                }
+
+                &.status {
+                    @apply justify-center text-2xs;
+
+                    & span {
+                        @apply rounded-full;
+                        padding: 2px 12px;
+                    }
+                }
+
+                &.amount {
+                    @apply justify-end;
+                }
+
+                &.button {
+                    @apply flex items-center justify-center h-6;
+
+                    & .icon {
+                        @apply transform -rotate-90 bg-gray;
+                        height: 14px;
+                        width: 14px;
+                    }
+                }
             }
         }
     }

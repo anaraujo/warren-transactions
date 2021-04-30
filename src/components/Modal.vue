@@ -4,9 +4,11 @@
       <div class="m-backdrop" @click="close"></div>
       <div class="m-content">
         <div class="m-header">
-          <h2>{{ transaction.title | capitalize }}</h2>
+          <p>{{ transaction.title }}</p>
 
-          <i class="icon close-icon" @click="close"></i>
+          <div class="button-wrapper">
+            <i class="icon close-icon" @click="close"></i>
+          </div>
         </div>
         <div class="m-body">
           <div class="status-wrapper">
@@ -18,7 +20,7 @@
             </div>
             <div class="status-label">
               <label v-for="(status, index) in statuses" :key="index">
-                {{ status | translatedStatus }}
+                {{ status.name | translatedStatus }}
               </label>
             </div>
           </div>
