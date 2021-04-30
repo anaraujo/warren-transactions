@@ -17,11 +17,6 @@ After installing the dependencies, node will start a local server on port 8080 a
 
 Alternatively, you can access the deployed version of this project at https://warren-transactions.herokuapp.com/
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
 ### Compiles and minifies for production
 ```
 npm run build
