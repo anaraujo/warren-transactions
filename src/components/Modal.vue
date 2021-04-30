@@ -6,8 +6,8 @@
         <div class="m-header">
           <p>{{ transaction.title }}</p>
 
-          <div class="button-wrapper">
-            <i class="icon close-icon" @click="close"></i>
+          <div class="button-wrapper" @click="close">
+            <i class="icon close-icon"></i>
           </div>
         </div>
         <div class="m-body">

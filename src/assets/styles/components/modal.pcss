@@ -1,9 +1,13 @@
 @layer components {
     .w-modal {
-        @apply fixed top-0 left-0 h-screen w-full;
+        @apply fixed top-0 left-0 h-full w-full;
 
         & .m-wrapper {
             @apply relative flex items-center justify-center h-full w-full p-4;
+
+            @screen sm-down {
+                @apply p-2;
+            }
 
             & .m-backdrop {
                 @apply absolute top-0 left-0 h-full w-full cursor-pointer;
@@ -15,8 +19,16 @@
                 max-height: 80vh;
                 max-width: 550px;
 
+                @screen sm-down {
+                    @apply pb-2;
+                }
+
                 & .m-header {
                     @apply sticky top-0 flex items-center justify-center h-8 border-b-px border-lighter-gray px-5 bg-white z-10;
+
+                    @screen sm-down {
+                        @apply h-6 px-2;
+                    }
 
                     & p {
                         @apply font-serif font-bold text-xs uppercase;
@@ -25,12 +37,20 @@
                     & .button-wrapper {
                         @apply absolute right-5 flex items-center justify-center h-4 w-4 rounded-full cursor-pointer;
 
+                        @screen sm-down {
+                            @apply h-3 w-3 right-2;
+                        }
+
                         &:hover {
                             @apply bg-lighter-gray;
                         }
 
                         & .icon {
                             @apply h-2 w-2;
+
+                            @screen sm-down {
+                                @apply h-1 w-1;
+                            }
                         }
                     }
                 }
@@ -38,9 +58,17 @@
                 & .m-body {
                     @apply px-5;
 
+                    @screen sm-down {
+                        @apply px-2;
+                    }
+
                     & .status-wrapper {
                         & .status-bar {
                             @apply h-3 rounded-2 bg-lighter-gray mt-4 mb-2;
+
+                            @screen sm-down {
+                                @apply h-2;
+                            }
 
                             & .bar {
                                 @apply relative h-full rounded-l-2 bg-green;
@@ -49,20 +77,36 @@
                                     @apply absolute h-3 w-3 rounded-full bg-light-gray;
                                     content: "";
                                     right: -12px;
+
+                                    @screen sm-down {
+                                        @apply h-2 w-2;
+                                    }
                                 }
                             }
                         }
 
                         & .status-label {
                             @apply flex justify-between;
+
+                            @screen sm-down {
+                                @apply text-xs;
+                            }
                         }
                     }
 
                     & .info-wrapper {
                         @apply mt-4;
 
+                        @screen sm-down {
+                            @apply mt-2;
+                        }
+
                         & p {
                             @apply font-serif text-base; 
+
+                            @screen sm-down {
+                                @apply text-sm;
+                            }
                         }
 
                         & .info {

@@ -1,8 +1,6 @@
 @layer base {
 	body {
-		@apply relative font-sans text-dark-gray;
-        /* background: rgb(224,43,87);
-        background: linear-gradient(180deg, rgba(224,43,87,1) 30%, rgba(148,29,58,1) 100%); */
+		@apply relative px-2 font-sans text-dark-gray;
 
 		& details {
 			@apply cursor-pointer;
@@ -14,7 +12,6 @@
 			& > summary {
 				@apply flex items-center justify-between h-full list-none outline-none;
 
-				&::marker,
                 &::-webkit-details-marker {
 					@apply hidden;
 				}
@@ -31,6 +28,10 @@
 		& h3 {
 			@apply text-lg font-bold border-b-px border-lighter-gray;
 			letter-spacing: -1px;
+
+			@screen sm-down {
+				@apply text-base;
+			}
 		}
 
 		& h6 {
@@ -57,6 +58,10 @@
         & main {
 			& .filters-wrapper {
 				@apply flex;
+
+				@screen xs-down {
+					@apply flex-col;
+				}
 			}
 
 			& .date-wrapper {

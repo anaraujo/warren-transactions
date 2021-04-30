@@ -3,6 +3,10 @@
         @apply relative h-4 min-w-15 ml-4 rounded-4px border-px border-light-gray px-1 bg-white;
         @apply font-serif font-bold uppercase text-2xs;
 
+        @screen xs-down {
+            @apply mt-2 ml-0;
+        }
+
         &:hover {
             @apply border-gray;
 
@@ -21,10 +25,19 @@
             & .icon-wrapper {
                 @apply flex items-center justify-center h-2 w-2 ml-1 bg-dark-gray rounded-full;
 
+                @screen xs-down {
+                    @apply h-1 w-1;
+                }
+
                 & .icon {
                     @apply bg-lightest-gray;
                     height: 10px;
                     width: 10px;
+
+                    @screen xs-down {
+                        height: 6px;
+                        width: 6px;
+                    }
                 }
             }
         }

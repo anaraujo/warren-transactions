@@ -117,6 +117,10 @@ export default {
         };
       });
 
+      keyDate.sort(
+        (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+      );
+
       var groupDate = {};
 
       keyDate.forEach((item) => {

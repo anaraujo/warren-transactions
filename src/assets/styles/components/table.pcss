@@ -1,10 +1,12 @@
 @layer components {
     .w-table {
-        /* box-shadow: 0px 10px 20px rgba(46, 45, 51, 0.15); */
-
         & .t-row {
             @apply grid -mx-1 rounded-1 px-1 py-2 cursor-pointer font-serif text-base text-dark-gray;
             grid-template-columns: 1fr 2fr 1fr 1fr 48px;
+
+            @screen md-down {
+                grid-template-columns: 1fr 1fr 30px;
+            }
 
             &:hover {
                 @apply bg-lighter-gray;
@@ -13,12 +15,27 @@
             & .t-col {
                 @apply flex items-center;
 
+                &.desc,
+                &.amount {
+                    @screen md-down {
+                        @apply text-sm;
+                    }
+                }
+
                 &.desc {
                     @apply text-gray;
+
+                    @screen md-down {
+                        @apply order-1;
+                    }
                 }
 
                 &.status {
                     @apply justify-center text-2xs;
+
+                    @screen md-down {
+                        @apply order-1 items-start justify-end;
+                    }
 
                     & span {
                         @apply rounded-full;
