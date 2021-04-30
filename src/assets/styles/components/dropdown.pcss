@@ -2,6 +2,7 @@
     .w-dropdown {
         @apply relative h-4 min-w-15 ml-4 rounded-4px border-px border-light-gray px-1 bg-white;
         @apply font-serif font-bold uppercase text-2xs;
+        transition: border 0.2s;
 
         @screen xs-down {
             @apply mt-2 ml-0;
@@ -45,6 +46,7 @@
         & .d-options {
             @apply absolute top-4 left-0 -mt-px -ml-px rounded-b-4px border-px border-t-0 border-light-gray bg-white;
             width: calc(100% + 2px);
+            transition: border 0.2s;
 
             & .option {
                 @apply py-4px px-1;
