@@ -5,6 +5,7 @@ test('capitalizes strings', () => {
     expect(capitalize('my string')).toBe('My string');
     expect(capitalize('Mystring')).toBe('Mystring');
     expect(capitalize('My string')).toBe('My string');
+    expect(capitalize()).toBe(null);
 });
 
 test('formats date string from yyyy-mm-dd to dd/mm/yyyy', () => {

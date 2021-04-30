@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">33.33% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>2/6</span>
+                <span class='fraction'>6/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">20% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/5</span>
+                <span class='fraction'>5/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">33.33% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>2/6</span>
+                <span class='fraction'>6/6</span>
             </div>
         
             
@@ -55,7 +55,7 @@
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -109,15 +109,7 @@
 <a name='L50'></a><a href='#L50'>50</a>
 <a name='L51'></a><a href='#L51'>51</a>
 <a name='L52'></a><a href='#L52'>52</a>
-<a name='L53'></a><a href='#L53'>53</a>
-<a name='L54'></a><a href='#L54'>54</a>
-<a name='L55'></a><a href='#L55'>55</a>
-<a name='L56'></a><a href='#L56'>56</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L53'></a><a href='#L53'>53</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -155,26 +147,22 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">72x</span>
+<span class="cline-any cline-yes">32x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&lt;template&gt;
   &lt;div class="w-table"&gt;
-    &lt;!-- &lt;div class="t-header"&gt;
-      &lt;div&gt;Título&lt;/div&gt;
-      &lt;div&gt;Descrição&lt;/div&gt;
-      &lt;div&gt;Status&lt;/div&gt;
-      &lt;div&gt;Valor&lt;/div&gt;
-    &lt;/div&gt; --&gt;
     &lt;div
       class="t-row"
       v-for="item in items"
@@ -194,6 +182,7 @@
         &lt;/span&gt;
       &lt;/p&gt;
       &lt;p class="t-col amount"&gt;{{ item.amount | money }}&lt;/p&gt;
+      &lt;p class="t-col button"&gt;&lt;i class="icon arrow-down-icon"&gt;&lt;/i&gt;&lt;/p&gt;
     &lt;/div&gt;
   &lt;/div&gt;
 &lt;/template&gt;
@@ -209,16 +198,18 @@ export default {
   },
   filters: { capitalize, money, translatedStatus },
   methods: {
-<span class="fstat-no" title="function not covered" >    selectItem(id) {</span>
-<span class="cstat-no" title="statement not covered" >      this.$emit("selectItem", id);</span>
+    selectItem(id) {
+      this.$emit("selectItem", id);
+    },
+    currentStatus(value) {
+      let status = this.statuses.find((status) =&gt; status.name === value);
+      return status ? status : {};
     },
     textColor(value) {
-<span class="fstat-no" title="function not covered" >      let currentStatus = this.statuses.find((status) =&gt; status.name === value);</span>
-<span class="cstat-no" title="statement not covered" >      return currentStatus.textColor;</span>
+      return this.currentStatus(value).textColor;
     },
-<span class="fstat-no" title="function not covered" >    bgColor(value) {</span>
-<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >      let currentStatus = this.statuses.find((status) =&gt; status.name === value);</span></span>
-<span class="cstat-no" title="statement not covered" >      return currentStatus.backgroundColor;</span>
+    bgColor(value) {
+      return this.currentStatus(value).backgroundColor;
     },
   },
 };
@@ -229,7 +220,7 @@ export default {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Fri Apr 30 2021 13:57:55 GMT-0300 (Brasilia Standard Time)
+                at Fri Apr 30 2021 18:38:02 GMT-0300 (Brasilia Standard Time)
             </div>
         </div>
         <script src="../../prettify.js"></script>

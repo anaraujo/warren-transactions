@@ -13,7 +13,24 @@ describe("Modal.test.js", () => {
         "to": "Conta Warren" 
     };
 
-    const statuses = ["created", "processing", "processed"];
+    const statuses = [
+        {
+            name: "created",
+            textColor: "#101c8b",
+            backgroundColor: "#b3baf4",
+        },
+        {
+            name: "processing",
+            textColor: "#7a2f01",
+            backgroundColor: "#fbb791",
+        },
+        {
+            name: "processed",
+            textColor: "#004d3a",
+            backgroundColor: "#a0f4e0",
+        },
+    ];
+
     let localVue, cmp;
 
     beforeEach(() => {
@@ -26,6 +43,8 @@ describe("Modal.test.js", () => {
             }
         })
     });
+
+    // PROPS
 
     it('prop named \'transaction\' is set to proper value', () => {
         expect(cmp.vm.transaction).toEqual({
@@ -41,8 +60,26 @@ describe("Modal.test.js", () => {
     });
 
     it('prop named \'statuses\' is set to proper value', () => {
-        expect(cmp.vm.statuses).toEqual(["created", "processing", "processed"]);
+        expect(cmp.vm.statuses).toEqual([
+            {
+                name: "created",
+                textColor: "#101c8b",
+                backgroundColor: "#b3baf4",
+            },
+            {
+                name: "processing",
+                textColor: "#7a2f01",
+                backgroundColor: "#fbb791",
+            },
+            {
+                name: "processed",
+                textColor: "#004d3a",
+                backgroundColor: "#a0f4e0",
+            },
+        ]);
     });
+
+    // DATA
 
     it('statusPercentage initializes with proper value', () => {
         expect(cmp.vm.statusPercentage).toEqual({
@@ -52,6 +89,8 @@ describe("Modal.test.js", () => {
         });
     });
 
+    // METHODS
+    
     it('close() is emmited', () => {
         cmp.vm.close();
         expect(cmp.emitted().closeModal).toBeTruthy()

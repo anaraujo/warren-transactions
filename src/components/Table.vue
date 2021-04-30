@@ -38,13 +38,15 @@ export default {
     selectItem(id) {
       this.$emit("selectItem", id);
     },
+    currentStatus(value) {
+      let status = this.statuses.find((status) => status.name === value);
+      return status ? status : {};
+    },
     textColor(value) {
-      let currentStatus = this.statuses.find((status) => status.name === value);
-      return currentStatus.textColor;
+      return this.currentStatus(value).textColor;
     },
     bgColor(value) {
-      let currentStatus = this.statuses.find((status) => status.name === value);
-      return currentStatus.backgroundColor;
+      return this.currentStatus(value).backgroundColor;
     },
   },
 };

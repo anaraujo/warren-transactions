@@ -6,7 +6,8 @@ import App from "@/App";
 describe("App.test.js", () => {
     const transactions = [
         { "id": "5f89f9f257fe42957bf6dbfd", "title": "Resgate", "description": "et labore proident aute nulla", "status": "created", "amount": 2078.66, "date": "2020-07-01", "from": "Aposentadoria", "to": "Conta Warren" },
-        { "id": "5f89f9f271e4213092bd4e41", "title": "Depósito", "description": "excepteur veniam proident irure pariatur", "status": "processing", "amount": 148856.29, "date": "2020-06-23", "from": "Trade", "to": "Conta Warren" }
+        { "id": "5f89f9f271e4213092bd4e41", "title": "Depósito", "description": "excepteur veniam proident irure pariatur", "status": "processing", "amount": 148856.29, "date": "2020-06-23", "from": "Trade", "to": "Conta Warren" },
+        { "id": "5f89f9f271e4213092bd4343e41", "title": "Resgate", "description": "excepteur veniam proident irure pariatur", "status": "processing", "amount": 148856.29, "date": "2020-06-23", "from": "Trade", "to": "Conta Warren" }
     ];
 
     const transaction = {
@@ -41,7 +42,8 @@ describe("App.test.js", () => {
     it('\'transactions\' initializes with proper value', () => {
         expect(cmp.vm.transactions).toEqual([
             { "id": "5f89f9f257fe42957bf6dbfd", "title": "Resgate", "description": "et labore proident aute nulla", "status": "created", "amount": 2078.66, "date": "2020-07-01", "from": "Aposentadoria", "to": "Conta Warren" },
-            { "id": "5f89f9f271e4213092bd4e41", "title": "Depósito", "description": "excepteur veniam proident irure pariatur", "status": "processing", "amount": 148856.29, "date": "2020-06-23", "from": "Trade", "to": "Conta Warren" }
+            { "id": "5f89f9f271e4213092bd4e41", "title": "Depósito", "description": "excepteur veniam proident irure pariatur", "status": "processing", "amount": 148856.29, "date": "2020-06-23", "from": "Trade", "to": "Conta Warren" },
+            { "id": "5f89f9f271e4213092bd4343e41", "title": "Resgate", "description": "excepteur veniam proident irure pariatur", "status": "processing", "amount": 148856.29, "date": "2020-06-23", "from": "Trade", "to": "Conta Warren" }
         ]);
     });
 
@@ -91,32 +93,39 @@ describe("App.test.js", () => {
 
     // COMPUTED 
 
-    it('\'statusesNames \' is working properly', () => {
-        // no filters specified
-        expect(cmp.vm.statusesNames).toEqual(["created", "processing", "processed"],);
-    });
-
     it('\'filteredItems \' is working properly', () => {
         // no filters specified
         expect(cmp.vm.filteredItems).toEqual(cmp.vm.transactions);
 
-        cmp.vm.title = 'Resgate'; // filter by title
+        cmp.vm.title = 'Depósito'; // filter by title
+        expect(cmp.vm.filteredItems).toEqual([
+            { "id": "5f89f9f271e4213092bd4e41", "title": "Depósito", "description": "excepteur veniam proident irure pariatur", "status": "processing", "amount": 148856.29, "date": "2020-06-23", "from": "Trade", "to": "Conta Warren" },
+        ]);
+
+        cmp.vm.status = 'created'; // filter by title and status
+        expect(cmp.vm.filteredItems).toEqual([]);
+
+        cmp.vm.title = 'Resgate'; // filter by title and status
         expect(cmp.vm.filteredItems).toEqual([
             { "id": "5f89f9f257fe42957bf6dbfd", "title": "Resgate", "description": "et labore proident aute nulla", "status": "created", "amount": 2078.66, "date": "2020-07-01", "from": "Aposentadoria", "to": "Conta Warren" }
         ]);
 
-        cmp.vm.status = 'processing'; // filter by title and status
-        expect(cmp.vm.filteredItems).toEqual([]);
-
-        cmp.vm.title = 'Depósito'; // filter by title and status
-        expect(cmp.vm.filteredItems).toEqual([
-            { "id": "5f89f9f271e4213092bd4e41", "title": "Depósito", "description": "excepteur veniam proident irure pariatur", "status": "processing", "amount": 148856.29, "date": "2020-06-23", "from": "Trade", "to": "Conta Warren" }
-        ]);
-
         cmp.vm.title = ''; // filter by status
         expect(cmp.vm.filteredItems).toEqual([
-            { "id": "5f89f9f271e4213092bd4e41", "title": "Depósito", "description": "excepteur veniam proident irure pariatur", "status": "processing", "amount": 148856.29, "date": "2020-06-23", "from": "Trade", "to": "Conta Warren" }
+            { "id": "5f89f9f257fe42957bf6dbfd", "title": "Resgate", "description": "et labore proident aute nulla", "status": "created", "amount": 2078.66, "date": "2020-07-01", "from": "Aposentadoria", "to": "Conta Warren" }
         ]);
+    });
+
+    it('\'groupByDate \' is working properly', () => {
+        expect(cmp.vm.groupByDate).toEqual({
+            "2020-07-01": [
+                { "id": "5f89f9f257fe42957bf6dbfd", "title": "Resgate", "description": "et labore proident aute nulla", "status": "created", "amount": 2078.66, "date": "2020-07-01", "from": "Aposentadoria", "to": "Conta Warren" },
+            ],
+            "2020-06-23": [
+                { "id": "5f89f9f271e4213092bd4e41", "title": "Depósito", "description": "excepteur veniam proident irure pariatur", "status": "processing", "amount": 148856.29, "date": "2020-06-23", "from": "Trade", "to": "Conta Warren" },
+                { "id": "5f89f9f271e4213092bd4343e41", "title": "Resgate", "description": "excepteur veniam proident irure pariatur", "status": "processing", "amount": 148856.29, "date": "2020-06-23", "from": "Trade", "to": "Conta Warren" }
+            ]
+        });
     });
 
     // METHODS

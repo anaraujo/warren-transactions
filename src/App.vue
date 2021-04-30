@@ -26,7 +26,7 @@
 
       <section v-else>
         <div
-          v-for="(transaction, date) in groupedByDate"
+          v-for="(transaction, date) in groupByDate"
           :key="date"
           class="date-wrapper"
         >
@@ -109,7 +109,7 @@ export default {
         return this.transactions;
       }
     },
-    groupedByDate() {
+    groupByDate() {
       var keyDate = Object.keys(this.filteredItems).map((index) => {
         return {
           date: this.filteredItems[index].date,

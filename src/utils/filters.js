@@ -1,5 +1,5 @@
 export function capitalize(value) { // capitalizes strings
-    return value.charAt(0).toUpperCase() + value.slice(1)
+    return value ? value.charAt(0).toUpperCase() + value.slice(1) : null;
 }
 
 export function date(value) { // formats date string from yyyy-mm-dd to dd/mm/yyyy
