@@ -92,6 +92,7 @@ export default {
     filteredItems() {
       if (this.title !== "") {
         if (this.status !== null) {
+          // filter by title and status
           return this.transactions.filter(
             (item) =>
               item.status === this.status &&
@@ -100,17 +101,21 @@ export default {
         }
 
         return this.transactions.filter(
+          // filter by title
           (item) =>
             item.title.toLowerCase().indexOf(this.title.toLowerCase()) > -1
         );
       } else if (this.status !== null) {
+        // filter by status
         return this.transactions.filter((item) => item.status === this.status);
       } else {
+        // no filter selected
         return this.transactions;
       }
     },
     groupByDate() {
       var keyDate = Object.keys(this.filteredItems).map((index) => {
+        // array of objects with two properties: date and transaction
         return {
           date: this.filteredItems[index].date,
           transaction: this.filteredItems[index],
@@ -118,12 +123,14 @@ export default {
       });
 
       keyDate.sort(
+        // sort array by most recent dates
         (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
       );
 
       var groupDate = {};
 
       keyDate.forEach((item) => {
+        // create object where date is a key and an array of that date's transactions is the corresponding value
         if (item.date in groupDate) {
           groupDate[item.date].push(item.transaction);
         } else {

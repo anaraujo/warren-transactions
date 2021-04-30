@@ -1,29 +1,15 @@
 @layer components {
-    input:focus,
-    input:active,
-    textarea:focus,
-    textarea:active,
-    button:focus,
-    button:active {
-        @apply outline-none;
-    }
-
-    input,
-    textarea,
-    button {
-        transition: border 0.2s;
-    }
-    
-    input[type=text] {
+    input {
         @apply h-4 rounded-4px border-px border-light-gray text-gray text-xs bg-no-repeat;
         background-image: url('../../../../public/images/search.svg');
         background-position: 8px;
         padding: 8px 16px 9px 32px;
-        
-        &:active,
+        transition: border 0.2s;
+
         &:focus,
+        &:active,
         &:hover {
-            @apply border-gray;
+            @apply border-gray outline-none;
         }
 
         &::placeholder {

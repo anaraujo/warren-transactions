@@ -44,11 +44,10 @@ export default {
     selectItem(value) {
       const details = document.querySelector(".w-dropdown");
 
+      details && details.removeAttribute("open"); // closing dropdown
+
       this.selectedItem = value;
-      if (details) {
-        details.removeAttribute("open");
-      }
-      this.$emit("selectItem", value);
+      this.$emit("selectItem", value); // passing value selected to parent component
     },
   },
 };

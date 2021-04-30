@@ -1,9 +1,13 @@
 .icon {
-	@apply inline-block h-3 w-3 bg-dark-gray;
+	@apply inline-block h-2 w-2 bg-dark-gray;
 
 	mask-size: contain;
 	mask-repeat: no-repeat;
 	mask-position: center;
+
+	@screen sm-down {
+		@apply h-1 w-1;
+	}
 }
 
 .arrow-down-icon {

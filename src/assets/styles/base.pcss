@@ -2,50 +2,6 @@
 	body {
 		@apply relative px-2 font-sans text-dark-gray;
 
-		& details {
-			@apply cursor-pointer;
-
-			&[open] summary .arrow-down-icon {
-				@apply transform -rotate-180;
-			}
-
-			& > summary {
-				@apply flex items-center justify-between h-full list-none outline-none;
-
-                &::-webkit-details-marker {
-					@apply hidden;
-				}
-
-                & .arrow-down-icon {
-                    height: 10px;
-                    width: 10px;
-                    transition: all 0.1s;
-                }
-			}
-		}
-
-
-		& h3 {
-			@apply text-lg font-bold border-b-px border-lighter-gray;
-			letter-spacing: -1px;
-
-			@screen sm-down {
-				@apply text-base;
-			}
-		}
-
-		& h6 {
-			@apply text-xs text-gray font-bold font-serif border-b-px border-lighter-gray pb-2;
-		}
-
-		& .offset {
-			@apply col-span-1;
-
-			@screen md-down {
-				@apply hidden;
-			}
-		}
-
 		& .container-fluid {
 			@apply relative w-full mx-auto py-2;
             max-width: 1300px;
@@ -66,6 +22,29 @@
 
 			& .date-wrapper {
 				@apply mt-4;
+			}
+		}
+
+
+		& details {
+			@apply cursor-pointer;
+
+			&[open] summary .arrow-down-icon {
+				@apply transform -rotate-180;
+			}
+
+			& > summary {
+				@apply flex items-center justify-between h-full list-none outline-none;
+
+                &::-webkit-details-marker {
+					@apply hidden;
+				}
+
+                & .arrow-down-icon {
+                    height: 10px;
+                    width: 10px;
+                    transition: all 0.1s;
+                }
 			}
 		}
 	}

@@ -19,7 +19,9 @@
         </span>
       </p>
       <p class="t-col amount">{{ item.amount | money }}</p>
-      <p class="t-col button"><i class="icon arrow-down-icon"></i></p>
+      <p class="t-col button">
+        <i class="icon arrow-down-icon"></i>
+      </p>
     </div>
   </div>
 </template>
@@ -36,11 +38,11 @@ export default {
   filters: { capitalize, money, translatedStatus },
   methods: {
     selectItem(id) {
-      this.$emit("selectItem", id);
+      this.$emit("selectItem", id); // pass id of transaction selected to the parent component
     },
     currentStatus(value) {
       let status = this.statuses.find((status) => status.name === value);
-      return status ? status : {};
+      return status ? status : {}; // return status object when name equals to parameter received
     },
     textColor(value) {
       return this.currentStatus(value).textColor;
