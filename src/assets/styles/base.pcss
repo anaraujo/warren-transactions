@@ -2,49 +2,51 @@
 	body {
 		@apply relative px-2 font-sans text-dark-gray;
 
-		& .container-fluid {
-			@apply relative w-full mx-auto py-2;
-            max-width: 1300px;
-		}
+		& #app {
+			& .container-fluid {
+				@apply relative w-full mx-auto py-2;
+				max-width: 1300px;
+			}
 
-        & header .logo-icon {
-            @apply h-4 w-11 bg-pink;
-        }
+			& header .logo-icon {
+				@apply h-4 w-11 bg-pink;
+			}
 
-        & main {
-			& .filters-wrapper {
-				@apply flex;
+			& main {
+				& .filters-wrapper {
+					@apply flex;
 
-				@screen xs-down {
-					@apply flex-col;
+					@screen xs-down {
+						@apply flex-col;
+					}
+				}
+
+				& .date-wrapper {
+					@apply mt-4;
 				}
 			}
 
-			& .date-wrapper {
-				@apply mt-4;
-			}
-		}
 
+			& details {
+				@apply cursor-pointer;
 
-		& details {
-			@apply cursor-pointer;
-
-			&[open] summary .arrow-down-icon {
-				@apply transform -rotate-180;
-			}
-
-			& > summary {
-				@apply flex items-center justify-between h-full list-none outline-none;
-
-                &::-webkit-details-marker {
-					@apply hidden;
+				&[open] summary .arrow-down-icon {
+					@apply transform -rotate-180;
 				}
 
-                & .arrow-down-icon {
-                    height: 10px;
-                    width: 10px;
-                    transition: all 0.1s;
-                }
+				& > summary {
+					@apply flex items-center justify-between h-full list-none outline-none;
+
+					&::-webkit-details-marker {
+						@apply hidden;
+					}
+
+					& .arrow-down-icon {
+						height: 10px;
+						width: 10px;
+						transition: all 0.1s;
+					}
+				}
 			}
 		}
 	}

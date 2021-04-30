@@ -1,24 +1,28 @@
-.icon {
-	@apply inline-block h-2 w-2 bg-dark-gray;
+@layer components {
+	#app {
+		& .icon {
+			@apply inline-block h-2 w-2 bg-dark-gray;
 
-	mask-size: contain;
-	mask-repeat: no-repeat;
-	mask-position: center;
+			mask-size: contain;
+			mask-repeat: no-repeat;
+			mask-position: center;
 
-	@screen sm-down {
-		@apply h-1 w-1;
+			@screen sm-down {
+				@apply h-1 w-1;
+			}
+		}
+
+		& .arrow-down-icon {
+			mask-image: url('../../../../public/images/arrow.svg');
+		}
+
+		& .close-icon {
+			mask-image: url('../../../../public/images/plus.svg');
+			transform: rotate(45deg);
+		}
+
+		& .logo-icon {
+			mask-image: url('../../../../public/images/logo.svg');
+		}
 	}
-}
-
-.arrow-down-icon {
-	mask-image: url('../../../../public/images/arrow.svg');
-}
-
-.close-icon {
-	mask-image: url('../../../../public/images/plus.svg');
-	transform: rotate(45deg);
-}
-
-.logo-icon {
-	mask-image: url('../../../../public/images/logo.svg');
 }
